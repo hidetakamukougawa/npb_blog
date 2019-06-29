@@ -1,18 +1,41 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <a class="navbar-brand" href="#">プロ野球掲示板</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <% if user_signed_in? %>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">ログイン <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/users/sign_in">投稿する <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">新規登録 <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/users/sign_up">ユーザー一覧 <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ログインユーザー名
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">投稿一覧</a>
+          <a class="dropdown-item" href="#">プロフィール一覧</a>
+          <%# <div class="dropdown-divider"></div> %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
       </li>
     </ul>
+  <% else %>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/sign_in">ログイン <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/users/sign_up">新規登録 <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  <% end %>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

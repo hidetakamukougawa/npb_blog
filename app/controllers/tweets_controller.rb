@@ -1,4 +1,8 @@
 class TweetsController < ApplicationController
+
+  # before_action :move_to_index, except: :index
+  before_action :authenticate_user!, only: :new
+
   def index
     @tweets = Tweet.order("created_at DESC").page(params[:page]).per(6)
   end
@@ -17,4 +21,8 @@ class TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:title, :image, :text).merge(user_id: current_user.id)
   end
+
+  # def move_to_index
+  #   redirect_to action: :index unless user_signed_in?
+  # end
 end

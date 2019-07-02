@@ -53,7 +53,7 @@
           <h5 class="card-title"><%=tweet.title %></h5>
         </div>
         <div class="card-body">
-          <a href="#" class="card-link">編集</a>
+          <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get, class: "card-link" %>
           <a href="#" class="card-link">削除</a>
         </div>
       </div>

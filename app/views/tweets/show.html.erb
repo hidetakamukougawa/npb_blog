@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card mb-3 w-75 h-75 mx-auto">
+  <%= image_tag(@tweet.image, class: "card-img-top w-50 h-50 mx-auto", alt: "ツイートの画像") %>
+  <div class="card-body">
+    <h5 class="card-title">タイトル：<%= @tweet.title %></h5>
+    <p class="card-text">本文：<%= @tweet.text %></p>
+    <%# <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> %>
+  </div>
+  </div>
+</div>
+<div class="container w-50 h-50 border p-3">
+  <% if current_user %>
+    <%= form_with model: [@tweet, @comment], local: true do |f| %>
+      <div class="form-group">
+        <%= f.text_area :text, class: "form-control", rows: 3 %>
+        <%= f.submit "送信する", class: "btn btn-primary my-2" %>
+    <% end %>
+  <% end %>
+  <div class="comments">
+    <h4>＜コメント一覧＞</h4>
+    <% if @comments %>
+      <ul class="list-group">
+        <% @comments.each do |comment| %>
+          <li class="list-group-item">
+            <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.text %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

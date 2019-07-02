@@ -16,6 +16,20 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @tweet = Tweet.find(params[:id])
+  end
+
+  def update
+    tweet = Tweet.find(params[:id])
+    if tweet.user_id == current_user.id
+      tweet.update(tweet_params)
+      redirect_to root_path, notice: "投稿を更新しました。"
+    else
+      redirect_to root_path, notice: "更新に失敗しました。"
+    end
+  end
+
   private
 
   def tweet_params

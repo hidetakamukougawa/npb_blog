@@ -30,7 +30,7 @@
               <%= current_user.name %>さん
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">投稿一覧</a>
+              <a class="dropdown-item" href="/users/<%= current_user.id %>">マイページ</a>
               <a class="dropdown-item" href="#">プロフィール</a>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>

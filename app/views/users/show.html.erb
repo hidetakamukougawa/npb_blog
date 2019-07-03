@@ -1,0 +1,7 @@
+<div class="jumbotron">
+  <div class="user_image"><%= image_tag @user.avatar, class: "rounded-circle", id: "circle" if @user.avatar.attached? %></div>
+  <h2><%= @user.name %><span>さんのマイページ</span></h2>
+</div>
+<div class="container">
+  <%= render partial: "tweets/tweet", locals: { tweets: @tweets } %>
+</div>

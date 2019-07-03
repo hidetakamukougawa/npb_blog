@@ -1,0 +1,19 @@
+<div class="article-all"><p>投稿一覧</p></div>
+<div class="row">
+  <% tweets.each do |tweet| %>
+    <div class="card mt-4" style="width: 23rem;">
+      <%= link_to image_tag(tweet.image, class: "card-img-top", alt: "ツイートの画像"), tweet_path(tweet) %>
+      <div class="card-body">
+        <h5 class="card-title"><%=tweet.title %></h5>
+      </div>
+      <div class="card-body">
+        <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get, class: "card-link" %>
+        <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete, class: "card-link" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>
+<div class="">
+  <%= paginate(@tweets) %>
+</div>

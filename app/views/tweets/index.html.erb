@@ -1,71 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">プロ野球掲示板</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <% if user_signed_in? %>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/tweets/new">投稿する <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/users/sign_up">ユーザー一覧 <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.name %>さん
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">投稿一覧</a>
-          <a class="dropdown-item" href="#">プロフィール一覧</a>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-        </div>
-      </li>
-    </ul>
-  <% else %>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/users/sign_in">ログイン <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/users/sign_up">新規登録 <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  <% end %>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2 " type="search" placeholder="検索する" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-    </form>
-  </div>
-</nav>
 <div class="jumbotron">
   <h1 class="npb-blog-title">プロ野球掲示板</h1>
   <p class="lead">好きなプロ野球の話題について語り会おう！！</p>
 </div>
 <div class="container">
-  <div class="article-all"><p>投稿一覧</p></div>
-  <div class="row">
-    <% @tweets.each do |tweet| %>
-      <div class="card mt-4" style="width: 23rem;">
-        <%= link_to image_tag(tweet.image, class: "card-img-top", alt: "ツイートの画像"), tweet_path(tweet) %>
-        <div class="card-body">
-          <h5 class="card-title"><%=tweet.title %></h5>
-        </div>
-        <div class="card-body">
-          <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get, class: "card-link" %>
-          <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete, class: "card-link" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  </div>
-  <div class="">
-    <%= paginate(@tweets) %>
-  </div>
+  <%= render partial: "tweet", locals: { tweets: @tweets } %>
 </div>
-<footer class="py-4 bg-dark text-light">
-  <div class="container text-center">
-    <p>©️プロ野球掲示板</p>
-  </div>
-</footer>
+

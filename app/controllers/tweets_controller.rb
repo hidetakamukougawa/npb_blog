@@ -35,6 +35,16 @@ class TweetsController < ApplicationController
     @comments = @tweet.comments.includes(:user)
   end
 
+  def destroy
+    tweet = Tweet.find(params[:id])
+    if tweet.user_id == current_user.id
+      tweet.destroy
+      redirect_to root_path, notice: "削除に成功しました。"
+    else
+      redirect_to root_path, notice: "削除に失敗しました。"
+    end
+  end
+
   private
 
   def tweet_params

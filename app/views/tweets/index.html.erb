@@ -54,7 +54,7 @@
         </div>
         <div class="card-body">
           <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get, class: "card-link" %>
-          <a href="#" class="card-link">削除</a>
+          <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete, class: "card-link" %>
         </div>
       </div>
     <% end %>

@@ -5,23 +5,7 @@
     <div class="container">
       <h1 class="mb-3 text-center">新規投稿</h1>
       <!-- フォーム -->
-      <div class="border w-75 p-3 mx-auto">
-        <%= form_with model: @tweet, local: true do |f| %>
-          <div class="form-group">
-            <%= f.label :タイトル %>
-            <%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :画像を選択 %>
-            <%= f.file_field :image, class: "form-control-file" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :テキスト %>
-            <%= f.text_area :text, class: "form-control", rows: 8 %>
-          </div>
-          <%= f.submit "投稿する", class: "btn btn-primary" %>
-        <% end %>
-      </div>
+      <%= render partial: "form", locals: { tweet: @tweet } %>
       <!-- /フォーム -->
     </div>
   </div>

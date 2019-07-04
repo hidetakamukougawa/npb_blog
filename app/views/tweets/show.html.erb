@@ -1,23 +1,26 @@
 <div class="container">
-  <div class="card mb-3 w-75 h-75 mx-auto">
+  <h1 class="mb-3 text-center mt-3">投稿詳細</h1>
+  <div class="container">
+  <div class="card mb-3 w-75 h-75 mx-auto mt-3 pt-3">
   <%= image_tag(@tweet.image, class: "card-img-top w-50 h-50 mx-auto", alt: "ツイートの画像") %>
   <div class="card-body">
-    <h5 class="card-title">タイトル：<%= @tweet.title %></h5>
+    <h5 class="card-title font-weight-bold">タイトル：<%= @tweet.title %></h5>
     <p class="card-text">本文：<%= @tweet.text %></p>
     <%# <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> %>
   </div>
   </div>
-</div>
-<div class="container w-50 h-50 border p-3">
+  </div>
+  <div class="container w-75 h-75 border p-3 mb-3">
   <% if current_user %>
     <%= form_with model: [@tweet, @comment], local: true do |f| %>
       <div class="form-group">
-        <%= f.text_area :text, class: "form-control", rows: 3 %>
-        <%= f.submit "送信する", class: "btn btn-primary my-2" %>
+        <%= f.text_area :text, class: "form-control", rows: 3, placeholder: 'コメントを入力してください' %>
+        <%= f.submit "送信する", class: "btn btn-primary my-2 d-block mx-auto w-50" %>
+      </div>
     <% end %>
   <% end %>
   <div class="comments">
-    <h4>＜コメント一覧＞</h4>
+    <h4 class="text-center">＜コメント一覧＞</h4>
     <% if @comments %>
       <ul class="list-group">
         <% @comments.each do |comment| %>
@@ -28,5 +31,6 @@
         <% end %>
       </ul>
     <% end %>
+  </div>
   </div>
 </div>

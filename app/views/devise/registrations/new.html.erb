@@ -31,7 +31,12 @@
             <%= f.label :パスワード再確認 %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
-          <%= f.submit "登録する", class: "w-50 btn btn-primary center-bloak" %>
+          <%= f.submit "登録する", class: "w-50 btn btn-primary d-block mx-auto" %>
+        <% end %>
+        <%= form_with(model: @user, url: user_session_path) do |f| %>
+          <%= f.hidden_field :email, value: 'test@example.com' %>
+          <%= f.hidden_field :password, value: '123456' %>
+          <%= f.submit 'テストユーザーでログイン', class: 'btn btn-success d-block mx-auto w-50 mt-3' %>
         <% end %>
       </div>
       <!-- /フォーム -->

@@ -1,0 +1,20 @@
+<div class="container">  
+  <div class="article-all py-3"><p>ユーザー一覧</p></div>
+  <div class="card-columns">
+    <% @users.each do |user| %>
+      <div class="card">
+      <% if user.avatar.attached? %>
+        <%= image_tag user.avatar, class: "card-img-top", alt: "ユーザーの写真"  %>
+      <% else %>
+        <%= image_tag "https://www.loginradius.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png", class: "card-img-top", alt: "ユーザーの写真" %>
+      <% end %>
+        <div class="card-body">
+          <h3 class="card-text"><%= link_to user.name, user_path(user) %>さん</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="mx-auto mt-3">
+  <%= paginate(@users) %>
+  </div>
+</div>

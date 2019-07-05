@@ -5,7 +5,9 @@ class TweetsController < ApplicationController
   # before_action :authenticate_user!, only: :new
 
   def index
-    @tweets = Tweet.order("created_at DESC").page(params[:page]).per(6)
+    # @tweets = Tweet.order("created_at DESC").page(params[:page]).per(6)
+    @q = Tweet.ransack(params[:q])
+    @tweets = @q.result(distinct: true).page(params[:page]).per(6)
   end
 
   def new

@@ -3,4 +3,6 @@ class Comment < ApplicationRecord
   belongs_to :tweet
 
   validates :text, presence: true
+  validates :user, presence: true
+  validates :tweet, presence: true
 end

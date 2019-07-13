@@ -71,3 +71,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'ransack'
 gem 'carrierwave'
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end

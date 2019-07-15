@@ -31,14 +31,14 @@ describe User do
       expect(user.errors[:password_confirmation]).to include("doesn't match Password")
     end
 
-    it "is invalid name 6文字以上" do
-      user = build(:user, name: "hidehide")
+    it "is invalid name 10文字以上" do
+      user = build(:user, name: "hidehidehide")
       user.valid?
-      expect(user.errors[:name]).to include("is too long (maximum is 6 characters)")
+      expect(user.errors[:name]).to include("is too long (maximum is 10 characters)")
     end
 
-    it "is valid name 6文字以下" do
-      user = build(:user, name: "jinjin")
+    it "is valid name 10文字以下" do
+      user = build(:user, name: "jinjinhide")
       expect(user).to be_valid
     end
 

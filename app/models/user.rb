@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :avatar
 
-  validates :name, presence: true, length: { maximum: 6 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 10 }, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true, length: { minimum: 6 }

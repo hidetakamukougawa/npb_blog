@@ -1,5 +1,6 @@
 require 'rails_helper'
-describe Tweet do
+
+RSpec.describe Tweet, type: :model do
   describe '#create' do
   
     it "is valid with a title, text, image" do

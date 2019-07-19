@@ -10,7 +10,7 @@
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="form-group">
             <%= f.label :名前 %><br />
-            <%= f.text_field :name,autofocus: true, maxlength: "12",class: "form-control" %>
+            <%= f.text_field :name,autofocus: true, maxlength: "12",class: "form-control",id: 'name' %>
           </div>
           <div class="form-group">
             <%= f.label :アイコン画像 %><br />
@@ -18,18 +18,18 @@
           </div>
           <div class="form-group">
             <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",id: 'email' %>
           </div>
           <div class="form-group">
             <%= f.label :パスワード %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control",id: 'password' %>
           </div>
           <div class="form-group">
             <%= f.label :パスワード再確認 %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",id: 'password_confirmation' %>
           </div>
           <%= f.submit "登録する", class: "w-100 btn btn-primary d-block mx-auto" %>
         <% end %>

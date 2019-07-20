@@ -11,7 +11,7 @@
           <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get, class: "card-link" %>
           <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete, class: "card-link" %>
         <% end %>
-        <div id="likes_buttons_<%= tweet.id %>" >
+        <div id="likes_buttons_<%= tweet.id %>", class="float-right">
           <%= render partial: 'likes/like', locals: { tweet: tweet } %>
         </div>
       </div>  

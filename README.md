@@ -1,71 +1,38 @@
-# README
+# npb_blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+プロ野球好きのための、写真共有サイトです。
+<http://52.192.200.146/>
 
-Things you may want to cover:
+## 機能と使用技術
 
-* Ruby version
+- AWS
+  - EC2(AmazonLinux,Nginx,Unicorn)
+  - S3
+- 単体・統合テスト(RSpec, factory_bot, capybara)
+- データベース(MYSQL)
+- 画像アップロード(Amason S3, Active storage, Mini_Magick)
+- ページネーション(kaminari)
+- 記事検索(ransack)
+- デザイン(Bootstrap4, Font Awesome) 
+- ログイン認証機能(devise)
+- いいね機能
+- コメント機能
 
-* System dependencies
+## 環境
 
-* Configuration
+- 言語(Ruby 2.5.1)
+- フレームワーク(Rails 5.2.3) 
+- Sass
+- GitHub
+- テキストエディタ(VScode,vim)
 
-* Database creation
+## 今後実装する機能と使用技術
 
-* Database initialization
+- ユーザー関連（フォロー・フォロワー）
+- パスワードリセット機能
+- 退会機能
 
-* How to run the test suite
+## 今後実装する環境
 
-* Services (job queues, cache servers, search engines, etc.)
+- Docker
 
-* Deployment instructions
-
-* ...
-
-## usersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true|
-|email|string|null: false, unique: true|
-|password|string|null: false|
-
-### Association
-- has_many :tweets
-- has_many :comments
-
-## tweetsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|title|string|null: false, index: true|
-|text|text|null: false|
-|user|references|foreign_key: true|
-|team|references|foreign_key: true|
-
-### Association
-- has_many :comments
-- belongs_to :user
-- belongs_to :team
-
-## commentsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|text|text|null: false|
-|user|references|foreign_key: true|
-|tweet|references|foreign_key: true|
-
-### Association
-- belongs_to :user
-- belongs_to :tweet
-
-## teamテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Associationテーブル
-- has_many :tweets

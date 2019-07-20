@@ -4,7 +4,7 @@
     <%= link_to tweet_like_path(tweet_id: tweet.id, id: tweet.likes[0].id), method: :delete, remote: true do %>
       <div class="vertical_like">
         <i class="fas fa-heart">いいね</i>
-        <span class="red-text">
+        <span class="text-secondary">
           <%= tweet.likes_count %>
         </span>
       </div>
@@ -13,7 +13,7 @@
     <%= link_to tweet_likes_path(tweet.id), method: :post, remote: true do %>
       <div class="vertical_like">
         <i class="far fa-heart">いいね</i>
-        <span class="grey-text text-darken-2">
+        <span class="text-secondary">
           <%= tweet.likes_count %>
         </span>
       </div>
@@ -25,14 +25,14 @@
   <% if tweet.likes_count.to_i > 0 %>
     <div class="vertical_like">
       <i class="fas fa-heart">いいね</i>
-      <span class="red-text">
+      <span class="text-secondary">
         <%= tweet.likes_count %>
       </span>
     </div>
   <% else %>
     <div class="vertical_like">
       <i class="far fa-heart">いいね</i>
-      <span class="grey-text text-darken-2">
+      <span class="text-secondary">
         <%= tweet.likes_count %>
       </span>
     </div >

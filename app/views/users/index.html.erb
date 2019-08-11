@@ -1,20 +1,28 @@
 <div class="container">  
   <div class="article-all py-3"><p>ユーザー一覧</p></div>
-  <div class="card-columns">
+  <div class="row">
     <% @users.each do |user| %>
-      <div class="card">
-      <% if user.avatar.attached? %>
-        <%= image_tag user.avatar, class: "card-img-top", alt: "ユーザーの写真"  %>
-      <% else %>
-        <%= image_tag "https://www.loginradius.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png", class: "card-img-top", alt: "ユーザーの写真" %>
-      <% end %>
-        <div class="card-body">
-          <h3 class="card-text"><%= link_to user.name, user_path(user) %>さん</h3>
+      <div class="col-md-6 offset-md-4 mx-auto">
+        <div class="media bg-light shadow d-flex align-items-center">
+          <% if user.avatar.attached? %>
+            <%= image_tag user.avatar, class: "user-img rounded-circle", alt: "ユーザーの写真"  %>
+          <% else %>
+            <%= image_tag "https://www.loginradius.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png", class: "user-img rounded-circle", alt: "ユーザーの写真" %>
+          <% end %>
+          <div class="col">
+            <p><%= link_to user.name, user_path(user) %>さん</p>
+          </div>
+          <div class="float-right">
+            <% unless current_user == user %>
+              
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
+  </div>
   <div class="mx-auto mt-3">
-  <%= paginate(@users) %>
+    <%= paginate(@users) %>
   </div>
 </div>

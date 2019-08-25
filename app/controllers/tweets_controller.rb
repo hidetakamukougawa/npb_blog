@@ -1,11 +1,12 @@
-class TweetsController < ApplicationController
+# frozen_string_literal: true
 
-  before_action :move_to_index, except: [:index, :show]
-  before_action :set_tweet, only: [:show, :edit]
+class TweetsController < ApplicationController
+  before_action :move_to_index, except: %i[index show]
+  before_action :set_tweet, only: %i[show edit]
 
   def index
     @q = Tweet.ransack(params[:q])
-    @tweets = @q.result(distinct: true).order("created_at DESC").page(params[:page]).per(6)
+    @tweets = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(6)
   end
 
   def new
@@ -17,16 +18,15 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     tweet = Tweet.find(params[:id])
     if tweet.user_id == current_user.id
       tweet.update(tweet_params)
-      redirect_to root_path, notice: "投稿を更新しました。"
+      redirect_to root_path, notice: '投稿を更新しました。'
     else
-      redirect_to root_path, notice: "更新に失敗しました。"
+      redirect_to root_path, notice: '更新に失敗しました。'
     end
   end
 
@@ -39,9 +39,9 @@ class TweetsController < ApplicationController
     tweet = Tweet.find(params[:id])
     if tweet.user_id == current_user.id
       tweet.destroy
-      redirect_to root_path, notice: "削除に成功しました。"
+      redirect_to root_path, notice: '削除に成功しました。'
     else
-      redirect_to root_path, notice: "削除に失敗しました。"
+      redirect_to root_path, notice: '削除に失敗しました。'
     end
   end
 

@@ -1,0 +1,6 @@
+inherit_from: .rubocop_todo.yml
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 20
+

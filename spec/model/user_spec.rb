@@ -1,76 +1,76 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe '#create' do
     context 'can save' do
-
-      it "is valid with a name, email, password, password_confirmation" do
+      it 'is valid with a name, email, password, password_confirmation' do
         user = build(:user)
         expect(user).to be_valid
       end
 
-      it "is valid name 10文字以下" do
-        user = build(:user, name: "jinjinhide")
+      it 'is valid name 10文字以下' do
+        user = build(:user, name: 'jinjinhide')
         expect(user).to be_valid
       end
 
-      it "is valid password 6文字以上" do
-        user = build(:user, password: "123456")
+      it 'is valid password 6文字以上' do
+        user = build(:user, password: '123456')
         expect(user).to be_valid
       end
     end
 
     context 'can not save' do
-      it "is invalid without a name" do
-        user = build(:user, name: "")
+      it 'is invalid without a name' do
+        user = build(:user, name: '')
         user.valid?
         expect(user.errors[:name]).to include("can't be blank")
       end
-  
-      it "is invalid without a email" do
-        user = build(:user, email: "")
+
+      it 'is invalid without a email' do
+        user = build(:user, email: '')
         user.valid?
         expect(user.errors[:email]).to include("can't be blank")
       end
-  
-      it "is invalid without a password" do
-        user = build(:user, password: "")
+
+      it 'is invalid without a password' do
+        user = build(:user, password: '')
         user.valid?
         expect(user.errors[:password]).to include("can't be blank")
       end
-  
-      it "is invalid without a password_confirmation although with a password" do
-        user = build(:user, password_confirmation: "")
+
+      it 'is invalid without a password_confirmation although with a password' do
+        user = build(:user, password_confirmation: '')
         user.valid?
         expect(user.errors[:password_confirmation]).to include("doesn't match Password")
       end
-  
-      it "is invalid name 10文字以上" do
-        user = build(:user, name: "hidehidehide")
+
+      it 'is invalid name 10文字以上' do
+        user = build(:user, name: 'hidehidehide')
         user.valid?
-        expect(user.errors[:name]).to include("is too long (maximum is 10 characters)")
+        expect(user.errors[:name]).to include('is too long (maximum is 10 characters)')
       end
-  
-      it "is invalid with a duplicate email address" do
-        user = create(:user, email: "test@email.com")
-        another_user = build(:user, email: "test@email.com")
+
+      it 'is invalid with a duplicate email address' do
+        user = create(:user, email: 'test@email.com')
+        another_user = build(:user, email: 'test@email.com')
         another_user.valid?
-        expect(another_user.errors[:email]).to include("has already been taken")
+        expect(another_user.errors[:email]).to include('has already been taken')
       end
-  
-      it "is invalid with a duplicate name" do
-        user = create(:user, name: "hide")
-        another_user = build(:user, name: "hide")
+
+      it 'is invalid with a duplicate name' do
+        user = create(:user, name: 'hide')
+        another_user = build(:user, name: 'hide')
         another_user.valid?
-        expect(another_user.errors[:name]).to include("has already been taken")
+        expect(another_user.errors[:name]).to include('has already been taken')
       end
-  
-      it "is invalid password 5文字以下" do
-        user = build(:user, password: "12345")
+
+      it 'is invalid password 5文字以下' do
+        user = build(:user, password: '12345')
         user.valid?
-        expect(user.errors[:password]).to include("is too short (minimum is 6 characters)")
+        expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
       end
     end
-    
   end
 end
